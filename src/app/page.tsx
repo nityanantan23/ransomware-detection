@@ -77,18 +77,18 @@ export default function Home() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24 bg-[#000]">
+    <main className="flex min-h-screen flex-col items-center justify-between p-6 sm:p-12 md:p-24 bg-[#000]">
       <Toaster richColors />
 
-      <div className="w-full max-w-2xl mx-auto bg-[#1e293b] rounded-xl p-8 text-white">
+      <div className="w-full max-w-lg sm:max-w-xl md:max-w-2xl mx-auto bg-[#1e293b] rounded-xl p-4 sm:p-6 md:p-8 text-white">
         <div className="space-y-4">
           <Header />
-          <div className="flex items-center gap-4">
+          <div className="flex flex-col md:flex-row items-center gap-4">
             <FileUploader
               value={files}
               onValueChange={setFiles}
               dropzoneOptions={dropZoneConfig}
-              className="relative bg-black rounded-lg p-2"
+              className="relative bg-black rounded-lg p-2 w-full"
             >
               <FileInput className="outline-dashed outline-1 outline-white">
                 <div className="flex items-center justify-center flex-col pt-3 pb-4 w-full">
@@ -106,7 +106,11 @@ export default function Home() {
                   ))}
               </FileUploaderContent>
             </FileUploader>
-            <Button disabled={!files} onClick={handleFileChange}>
+            <Button
+              disabled={!files}
+              onClick={handleFileChange}
+              className="w-full md:w-auto"
+            >
               {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
               Submit
             </Button>
