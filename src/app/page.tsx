@@ -46,14 +46,15 @@ export default function Home() {
       if (response.includes("Error")) {
         toast.error(response);
       } else {
-        toast.success(response);
+        const parsedResponse = JSON.parse(response);
+        const msg =
+          parsedResponse.prediction === "legitimate"
+            ? "File is legitimate"
+            : "File is ransomware";
 
-        setFileDetails(response);
-        setResult(
-          response.prediction === "legitimate"
-            ? "legitimate"
-            : "File is ransomware"
-        );
+        setFileDetails(parsedResponse.file_info);
+        setResult(parsedResponse.prediction);
+        toast.success(msg);
       }
     }
   };
@@ -169,7 +170,9 @@ const ResultMessage = ({ result }: { result: string }) => (
       ) : (
         <XIcon className="h-5 w-5" />
       )}
-      <span>{result}</span>
+      <span>
+        {result === "legitimate" ? "File is legitimate" : "File is ransomware"}
+      </span>
     </div>
   </div>
 );
