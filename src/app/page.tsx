@@ -21,7 +21,7 @@ import { toast, Toaster } from "sonner";
 
 const dropZoneConfig = {
   maxFiles: 1,
-  maxSize: 1024 * 1024 * 4,
+  maxSize: 1024 * 1024 * 10,
   multiple: false,
   accept: {
     "application/x-msdownload": [".exe"],
